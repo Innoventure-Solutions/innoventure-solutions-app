@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import ContactUs from "./Contact-Us/contact.us";
 
-function App() {
+const App: React.FC = () => {
   const [servicesOpen, setServicesOpen] = useState(false);
   const [projectsOpen, setProjectsOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const canvasEl = document.getElementById(
@@ -13,11 +14,11 @@ function App() {
 
     if (!canvasEl) return;
 
-    const ctx = canvasEl.getContext("2d");
-    if (!ctx) return;
+    const ctxEl = canvasEl.getContext("2d");
+    if (!ctxEl) return;
 
     const canvas = canvasEl;
-    const context = ctx;
+    const ctx = ctxEl;
 
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
@@ -28,7 +29,7 @@ function App() {
     window.addEventListener("resize", resizeCanvas);
 
     const particles: Particle[] = [];
-    const PARTICLE_COUNT = 80;
+    const PARTICLE_COUNT = window.innerWidth < 768 ? 35 : 80;
     const MAX_DISTANCE = 130;
 
     class Particle {
@@ -47,10 +48,10 @@ function App() {
       }
 
       draw() {
-        context.beginPath();
-        context.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        context.fillStyle = "rgba(255,255,255,0.9)";
-        context.fill();
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(255,255,255,0.9)";
+        ctx.fill();
       }
 
       update() {
@@ -76,20 +77,20 @@ function App() {
           const distance = Math.sqrt(dx * dx + dy * dy);
 
           if (distance < MAX_DISTANCE) {
-            context.strokeStyle = `rgba(255,255,255,${
+            ctx.strokeStyle = `rgba(255,255,255,${
               1 - distance / MAX_DISTANCE
             })`;
-            context.beginPath();
-            context.moveTo(particles[i].x, particles[i].y);
-            context.lineTo(particles[j].x, particles[j].y);
-            context.stroke();
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
           }
         }
       }
     };
 
     const animate = () => {
-      context.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
       particles.forEach((p) => p.update());
       connectParticles();
       requestAnimationFrame(animate);
@@ -109,14 +110,18 @@ function App() {
       <header className="navbar">
         <div className="logo">Innoventure Solutions</div>
 
-        <nav className="nav-links">
-          <div
-            className="dropdown"
-            onMouseEnter={() => setServicesOpen(true)}
-            onMouseLeave={() => setServicesOpen(false)}
-          >
-            <button className="nav-btn">Services</button>
+        <div className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
+          ☰
+        </div>
 
+        <nav className={`nav-links ${menuOpen ? "open" : ""}`}>
+          <div className="dropdown">
+            <button
+              className="nav-btn"
+              onClick={() => setServicesOpen(!servicesOpen)}
+            >
+              Services
+            </button>
             {servicesOpen && (
               <div className="dropdown-content">
                 <a href="/web">Web Development</a>
@@ -126,13 +131,13 @@ function App() {
             )}
           </div>
 
-          <div
-            className="dropdown"
-            onMouseEnter={() => setProjectsOpen(true)}
-            onMouseLeave={() => setProjectsOpen(false)}
-          >
-            <button className="nav-btn">Projects</button>
-
+          <div className="dropdown">
+            <button
+              className="nav-btn"
+              onClick={() => setProjectsOpen(!projectsOpen)}
+            >
+              Projects
+            </button>
             {projectsOpen && (
               <div className="dropdown-content">
                 <a href="/live">Live Projects</a>
@@ -145,8 +150,7 @@ function App() {
           <a className="nav-link" href="/team">Dedicated Team</a>
           <a className="nav-link" href="/resources">Resources</a>
         </nav>
-
-              </header>
+      </header>
 
       <div className="hero-content">
         <h1>Hello</h1>
@@ -159,6 +163,6 @@ function App() {
       </section>
     </div>
   );
-}
+};
 
 export default App;
