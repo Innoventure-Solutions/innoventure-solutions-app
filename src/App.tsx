@@ -1,28 +1,30 @@
 import React, { useEffect, useState } from "react";
-import "./App.css";
 import ContactUs from "./Contact-Us/contact.us";
+import "./App.css";
 
 const App: React.FC = () => {
-  const [servicesOpen, setServicesOpen] = useState<boolean>(false);
-  const [projectsOpen, setProjectsOpen] = useState<boolean>(false);
-  const [menuOpen, setMenuOpen] = useState<boolean>(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
+  const [projectsOpen, setProjectsOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [showContact, setShowContact] = useState(false);
 
   useEffect(() => {
+    if (showContact) return;
+
     const canvasEl = document.getElementById(
       "network-canvas"
     ) as HTMLCanvasElement | null;
-
     if (!canvasEl) return;
 
     const ctxEl = canvasEl.getContext("2d");
     if (!ctxEl) return;
 
-    const c: HTMLCanvasElement = canvasEl;
-    const context: CanvasRenderingContext2D = ctxEl;
+    const canvas: HTMLCanvasElement = canvasEl;
+    const ctx: CanvasRenderingContext2D = ctxEl;
 
-    const resize = (): void => {
-      c.width = window.innerWidth;
-      c.height = window.innerHeight;
+    const resize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
     };
 
     resize();
@@ -36,40 +38,40 @@ const App: React.FC = () => {
       r: number;
 
       constructor() {
-        this.x = Math.random() * c.width;
-        this.y = Math.random() * c.height;
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
         this.vx = (Math.random() - 0.5) * 0.7;
         this.vy = (Math.random() - 0.5) * 0.7;
         this.r = 2;
       }
 
-      draw(): void {
-        context.beginPath();
-        context.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-        context.fillStyle = "rgba(255,255,255,0.9)";
-        context.fill();
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(255,255,255,0.9)";
+        ctx.fill();
       }
 
-      update(): void {
+      update() {
         this.x += this.vx;
         this.y += this.vy;
 
-        if (this.x <= 0 || this.x >= c.width) this.vx *= -1;
-        if (this.y <= 0 || this.y >= c.height) this.vy *= -1;
+        if (this.x <= 0 || this.x >= canvas.width) this.vx *= -1;
+        if (this.y <= 0 || this.y >= canvas.height) this.vy *= -1;
 
         this.draw();
       }
     }
 
     const particles: Particle[] = [];
-    const COUNT: number = window.innerWidth < 768 ? 35 : 80;
-    const MAX_DISTANCE: number = 130;
+    const COUNT = window.innerWidth < 768 ? 35 : 80;
+    const MAX_DISTANCE = 130;
 
     for (let i = 0; i < COUNT; i++) {
       particles.push(new Particle());
     }
 
-    const connectParticles = (): void => {
+    const connectParticles = () => {
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
@@ -77,13 +79,13 @@ const App: React.FC = () => {
           const dist = Math.sqrt(dx * dx + dy * dy);
 
           if (dist < MAX_DISTANCE) {
-            context.strokeStyle = `rgba(255,255,255,${
+            ctx.strokeStyle = `rgba(255,255,255,${
               1 - dist / MAX_DISTANCE
             })`;
-            context.beginPath();
-            context.moveTo(particles[i].x, particles[i].y);
-            context.lineTo(particles[j].x, particles[j].y);
-            context.stroke();
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
           }
         }
       }
@@ -91,8 +93,8 @@ const App: React.FC = () => {
 
     let animationId: number;
 
-    const animate = (): void => {
-      context.clearRect(0, 0, c.width, c.height);
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
       particles.forEach((p) => p.update());
       connectParticles();
       animationId = requestAnimationFrame(animate);
@@ -104,68 +106,84 @@ const App: React.FC = () => {
       cancelAnimationFrame(animationId);
       window.removeEventListener("resize", resize);
     };
-  }, []);
+  }, [showContact]);
+
+  if (showContact) {
+    return (
+      <ContactUs
+        title="Contact Us"
+        goBack={() => setShowContact(false)}
+      />
+    );
+  }
 
   return (
     <div className="app">
-      <canvas id="network-canvas"></canvas>
+      <canvas id="network-canvas" />
 
       <header className="navbar">
         <div className="logo">Innoventure Solutions</div>
 
         <div
           className={`hamburger ${menuOpen ? "open" : ""}`}
-          onClick={() => setMenuOpen((prev) => !prev)}
+          onClick={() => setMenuOpen((p) => !p)}
         >
           <span />
           <span />
           <span />
         </div>
 
-        <nav className={`nav-links ${menuOpen ? "open" : ""}`}>
+             <nav className={`nav-links ${menuOpen ? "open" : ""}`}>
           <div className="dropdown">
             <button
-              type="button"
               className="nav-btn"
-              onClick={() => setServicesOpen((p) => !p)}
+              onClick={() => {
+                setServicesOpen((p) => !p);
+                setProjectsOpen(false);
+              }}
             >
               Services
             </button>
 
             {servicesOpen && (
               <div className="dropdown-content">
-                <a href="/web">Web Development</a>
-                <a href="/ui">UI / UX Design</a>
-                <a href="/apps">Mobile Apps</a>
+                <button className="link-btn">Web Development</button>
+                <button className="link-btn">UI / UX Design</button>
+                <button className="link-btn">Mobile Apps</button>
               </div>
             )}
           </div>
 
           <div className="dropdown">
             <button
-              type="button"
               className="nav-btn"
-              onClick={() => setProjectsOpen((p) => !p)}
+              onClick={() => {
+                setProjectsOpen((p) => !p);
+                setServicesOpen(false);
+              }}
             >
               Projects
             </button>
 
             {projectsOpen && (
               <div className="dropdown-content">
-                <a href="/live">Live Projects</a>
-                <a href="/case">Case Studies</a>
-                <a href="/clients">Client Work</a>
+                <button className="link-btn">Live Projects</button>
+                <button className="link-btn">Case Studies</button>
+                <button className="link-btn">Client Work</button>
               </div>
             )}
           </div>
 
-          <a className="nav-link" href="/team">
-            Dedicated Team
-          </a>
-          <a className="nav-link" href="/resources">
-            Resources
-          </a>
+          <button className="nav-link-btn">Dedicated Team</button>
+          <button className="nav-link-btn">Resources</button>
         </nav>
+
+        <div
+          className="contact-btn"
+          onClick={() => setShowContact(true)}
+        >
+          CONTACT US 📞
+        </div>
       </header>
 
       <div className="hero-content">
@@ -173,10 +191,6 @@ const App: React.FC = () => {
         <h2>Welcome to Innoventure Solutions</h2>
         <p>We build digital products that grow your business</p>
       </div>
-
-      <section className="contact-wrapper">
-        <ContactUs title="Contact Us Page" />
-      </section>
     </div>
   );
 };
