@@ -40,8 +40,8 @@ const App: React.FC = () => {
       constructor() {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
-        this.vx = (Math.random() - 0.5) * 0.7;
-        this.vy = (Math.random() - 0.5) * 0.7;
+        this.vx = (Math.random() - 0.5) * 2.7;
+        this.vy = (Math.random() - 0.5) * 2.7;
         this.r = 2;
       }
 
@@ -178,12 +178,12 @@ const App: React.FC = () => {
           <button className="nav-link-btn">Resources</button>
         </nav>
 
-        <div
-          className="contact-btn"
-          onClick={() => setShowContact(true)}
-        >
-          CONTACT US 📞
-        </div>
+      <div className="contact-btn"
+         onClick={() => setShowContact(true)}>
+  <span className="text">CONTACT US</span>
+  <span className="icon">📞</span>
+</div>
+
       </header>
 
       <div className="hero-content">
