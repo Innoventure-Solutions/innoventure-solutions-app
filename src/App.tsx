@@ -178,12 +178,11 @@ const App: React.FC = () => {
           <button className="nav-link-btn">Resources</button>
         </nav>
 
-        <div
-          className="contact-btn"
-          onClick={() => setShowContact(true)}
-        >
-          CONTACT US 📞
-        </div>
+        <div className="contact-btn"
+         onClick={() => setShowContact(true)}>
+  <span className="text">CONTACT US</span>
+  <span className="icon">📞</span>
+</div>
       </header>
 
       <div className="hero-content">
