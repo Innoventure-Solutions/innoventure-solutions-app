@@ -157,7 +157,6 @@ const formStyle: React.CSSProperties = {
 
 const titleStyle: React.CSSProperties = {
   textAlign: "center",
-  color: "black"
 };
 
 const backBtn: React.CSSProperties = {
