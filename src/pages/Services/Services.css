@@ -1,0 +1,121 @@
+.services-page {
+    min-height: 100vh;
+    padding: 100px 80px;
+    background: linear-gradient(180deg, #030318 0%, #0a0f3d 45%, #121b6e 100%);
+    color: #ffffff;
+}
+
+.services-title {
+    font-size: 46px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.services-subtitle {
+    text-align: center;
+    opacity: 0.8;
+    max-width: 650px;
+    margin: 0 auto 70px;
+    font-size: 16px;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+.service-card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 18px;
+    padding: 35px 30px 40px;
+    backdrop-filter: blur(10px);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    overflow: hidden;
+}
+
+.service-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient( 120deg, rgba(59, 130, 246, 0.4), transparent 60%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.service-card:hover::before {
+    opacity: 1;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
+}
+
+.service-tag {
+    display: inline-block;
+    background: #2563eb;
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.service-icon {
+    font-size: 38px;
+    margin-bottom: 18px;
+}
+
+.service-title {
+    font-size: 22px;
+    margin-bottom: 14px;
+}
+
+.service-description {
+    font-size: 14px;
+    opacity: 0.85;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.service-btn {
+    background: transparent;
+    border: none;
+    color: #60a5fa;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: gap 0.3s ease, color 0.3s ease;
+}
+
+.service-btn span {
+    transition: transform 0.3s ease;
+}
+
+.service-btn:hover {
+    color: #93c5fd;
+}
+
+.service-btn:hover span {
+    transform: translateX(4px);
+}
+
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+    .services-page {
+        padding: 80px 20px;
+    }
+    .services-title {
+        font-size: 32px;
+    }
+    .services-subtitle {
+        font-size: 14px;
+    }
+}
