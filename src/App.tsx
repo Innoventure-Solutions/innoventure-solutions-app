@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
-import ContactUs from "./Contact-Us/contact.us";
+import ContactUs from "./pages/Contact-Us/contact.us";
 import Services from "./pages/Services/Services";
 import "./App.css";
 
 const App: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [showContact, setShowContact] = useState(false);
-
+useEffect(() => {
+    document.title = 'Innovatech Solutions - Home';
+  }, []);
   const navigate = useNavigate();
   const location = useLocation(); // ✅ IMPORTANT
 
