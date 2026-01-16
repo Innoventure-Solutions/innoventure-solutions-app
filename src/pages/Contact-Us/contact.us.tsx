@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 interface ContactUsProps {
@@ -9,7 +9,9 @@ interface ContactUsProps {
 const ContactUs: React.FC<ContactUsProps> = ({ title, goBack }) => {
   const [popupMessage, setPopupMessage] = useState("");
   const [uploadedFileName, setUploadedFileName] = useState<string | null>(null);
-
+ useEffect(() => {
+    document.title = 'Innovatech Solutions - Contact Us';
+  }, []);
   const sendFormData = async (data: any) => {
     return axios.post("http://localhost:3002/contact-us", data, {
       headers: { "Content-Type": "application/json" },

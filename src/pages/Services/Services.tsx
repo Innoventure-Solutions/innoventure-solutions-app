@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Services.css";
 
 const services = [
@@ -47,6 +47,9 @@ const services = [
 ];
 
 const Services: React.FC = () => {
+  useEffect(() => {
+      document.title = 'Innovatech Solutions - Services';
+    }, []);
   return (
     <div className="services-page">
       <h1 className="services-title">Our Services</h1>
