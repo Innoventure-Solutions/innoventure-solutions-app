@@ -145,15 +145,6 @@ const titleStyle: React.CSSProperties = {
   textAlign: "center",
 };
 
-const backBtn: React.CSSProperties = {
-  position: "absolute",
-  top: "15px",
-  left: "15px",
-  background: "transparent",
-  border: "none",
-  cursor: "pointer",
-  fontSize: "14px",
-};
 
 const inputStyle: React.CSSProperties = {
   padding: "10px",

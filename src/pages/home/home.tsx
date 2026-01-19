@@ -59,8 +59,6 @@ export const Home: React.FC = () => {
       particles.push(new Particle());
     }
 
-    let animationId: number;
-
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       particles.forEach((p) => p.update());
@@ -83,7 +81,7 @@ export const Home: React.FC = () => {
         }
       }
 
-      animationId = requestAnimationFrame(animate);
+      requestAnimationFrame(animate);
     };
 
     animate();
