@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-
-interface ContactUsProps {
-  title: string;
-  goBack: () => void;
-}
-
-const ContactUs: React.FC<ContactUsProps> = ({ title, goBack }) => {
+import "./contact.us.css";
+const ContactUs: React.FC = () => {
   const [popupMessage, setPopupMessage] = useState("");
   const [uploadedFileName, setUploadedFileName] = useState<string | null>(null);
  useEffect(() => {
@@ -68,7 +63,7 @@ const ContactUs: React.FC<ContactUsProps> = ({ title, goBack }) => {
   };
 
   return (
-    <div style={pageStyle}>
+    <div className="contact-us-page">
       {popupMessage && (
         <div style={popupOverlay}>
           <div style={popupBox}>
@@ -81,11 +76,7 @@ const ContactUs: React.FC<ContactUsProps> = ({ title, goBack }) => {
       )}
 
       <form onSubmit={savenewlead} style={formStyle}>
-             <button type="button" onClick={goBack} style={backBtn}>
-          ⬅ Back
-        </button>
-
-        <h2 style={titleStyle}>{title}</h2>
+        <h2 style={titleStyle}>Contact Us</h2>
 
         <input style={inputStyle} type="text" name="fullName" placeholder="Full Name" />
 
@@ -137,13 +128,6 @@ export default ContactUs;
 
 /* ================= STYLES ================= */
 
-const pageStyle: React.CSSProperties = {
-  minHeight: "100vh",
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  background: "#f4f6f8",
-};
 
 const formStyle: React.CSSProperties = {
   background: "#ffffff",
