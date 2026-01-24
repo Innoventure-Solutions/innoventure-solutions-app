@@ -371,4 +371,10 @@ body {
     .contact-icon svg {
         font-size: 18px;
     }
+    .contact-btn:hover .text{
+        opacity: 1;
+    }
+    .contact-btn:hover .icon{
+        transform: none;
+    }
 }
