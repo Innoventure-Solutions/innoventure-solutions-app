@@ -12,7 +12,7 @@ const Services: React.FC = () => {
         Cutting-edge technology solutions designed to drive innovation and growth
       </p>
 
-      <div className="services-grid">
+<div className="services-grid">
           <div className="service-card">
             <div className="service-tag">CORE</div>
 
