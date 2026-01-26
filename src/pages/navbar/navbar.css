@@ -41,6 +41,7 @@ body {
 
 .navbar-buttons{
     text-decoration: none;
+    outline: none;
 }
 
 .nav-links {
