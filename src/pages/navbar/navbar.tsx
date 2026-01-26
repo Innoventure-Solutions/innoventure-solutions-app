@@ -4,6 +4,14 @@ import "./navbar.css";
 export const Navbar: React.FC = () => {
 
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const navItems = [
+    {to:"/services", label:"Services", className:"nav-btn navbar-buttons"},
+    {to:"/projects", label:" Projects", className:"nav-btn navbar-buttons"},
+    {to:"/dedicated-team", label:"Dedicated Team", className:"nav-link-btn navbar-buttons"},
+    {to:"/resources", label:"Resources", className:"nav-link-btn navbar-buttons"}
+  ]
+
     return(
         <>
          <header className="navbar">
@@ -21,33 +29,15 @@ export const Navbar: React.FC = () => {
               </div>
 
               <nav className={`nav-links ${menuOpen ? "open" : ""}`}>
-               <NavLink to="/services" className="nav-btn navbar-buttons">
-                  Services
-                </NavLink>
-                {/* <button
-                  className="nav-btn"
-                  onClick={() => navigate("/services")}
-                >
-                  Services
-                </button> */}
-
-                <NavLink to="/projects" className="nav-btn navbar-buttons">
-                  Projects
-                </NavLink>
-                {/* <button className="nav-btn">Projects</button> */}
-
-                <NavLink to="/dedicated-team" className="nav-link-btn navbar-buttons">
-                  Dedicated Team
-                </NavLink>
-                <NavLink to="/resources" className="nav-link-btn navbar-buttons">Resources</NavLink>
-               
-
-
-
+                {navItems.map((item)=>(
+                 <NavLink key={item.to} to={item.to} className={item.className} onClick={()=>setMenuOpen(false)}>
+                  {item.label}
+                 </NavLink>
+                ))}
               </nav>
               <nav>
 
-<NavLink to="/contact-us" className="contact-btn navbar-buttons">
+               <NavLink to="/contact-us" className="contact-btn navbar-buttons">
                 <span className="text">CONTACT US</span>
                 <span className="icon">📞</span>
                 </NavLink>
