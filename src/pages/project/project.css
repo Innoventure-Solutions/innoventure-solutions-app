@@ -83,3 +83,42 @@
 .project-btn:hover {
   color: #93c5fd;
 }
+
+@media (max-width: 768px) {
+  .project-page {
+    padding: 60px 16px;
+    margin-bottom: 40px;
+  }
+
+  .project-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .project-card {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .project-image {
+    height: 180px;
+  }
+
+  .project-content {
+    padding: 12px 14px;
+  }
+
+  .project-title {
+    font-size: 18px;
+  }
+
+  .project-description {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .project-btn {
+    font-size: 14px;
+  }
+
+}
