@@ -5,6 +5,7 @@ import Services from "./pages/Services/Services";
 import {Navbar} from "./pages/navbar/navbar";
 import "./App.css";
 import { Home } from "./pages/home/home";
+import Projects from "./pages/project/project";
 
 const App: React.FC = () => {
 
@@ -23,6 +24,7 @@ const App: React.FC = () => {
 
       {/* SERVICES PAGE */}
       <Route path="/services" element={<Services />} />
+      <Route path="/projects" element={<Projects />} />
       <Route path="/contact-us" element={<ContactUs />} />
     </Routes>
     
