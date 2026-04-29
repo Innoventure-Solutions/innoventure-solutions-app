@@ -1,43 +1,56 @@
-import React from "react";
+import React, {useEffect } from "react";
 import "./project.css";
+
 const Projects: React.FC = () => {
+useEffect(() => {
+        document.title = 'Innovatech Solutions - projects';
+      }, []);
   return (
-    <div className="project-page">
-      <div className="project-grid">
-        <div className="project-card">
-          <div className="project-image">
-            <img alt="img" className="img" />
-          </div>
-          <div className="project-content">
-            <h3 className="project-title">Project</h3>
-            <p className="project-description">Description of project</p>
-            <button className="project-btn">Read More...</button>
-          </div>
-        </div>
+     <div className="projects-page">
+      <h1 className="projects-title">our projects</h1>
+      <p  className="projects-subtite">
+        A showcase of our work,ideas,and innovetion.
+      </p>
 
-        <div className="project-card">
-          <div className="project-image">
-            <img alt="img" className="img" />
-          </div>
-          <div className="project-content">
-            <h3 className="project-title">Project</h3>
-            <p className="project-description">Description of project</p>
-            <button className="project-btn">Read More...</button>
-          </div>
-        </div>
+<div className="projects-grid">
+  <div className="project-card">
+    <div className="project-tag">Ecom Bot (WhatsApp Bot)</div>
+     
+    <div className="project-icons">🛒</div>
 
-        <div className="project-card">
-          <div className="project-image">
-            <img alt="img" className="img" />
-          </div>
-          <div className="project-content">
-            <h3 className="project-title">Project</h3>
-            <p className="project-description">Description of project</p>
-            <button className="project-btn">Read More...</button>
-          </div>
-        </div>
-      </div>
-    </div>
+    <h3 className="project-title">IT projects</h3>
+    <p className="project-description">Your ecommerce store inside WhatsApp,
+       where customers can browse, order, and track seamlessly.</p>
+    <button className="project-btn">
+      learn More <span>→</span>
+    </button>
+  </div>
+  <div className="project-card">
+    <div className="project-tag">Ecommerce Application (Web App)</div>
+     
+    <div className="project-icons">🌐</div>
+
+    <h3 className="project-title">IT projects</h3>
+    <p className="project-description">A complete web platform to manage, sell, and scale your online store effortlessly</p>
+    <button className="project-btn">
+      learn More <span>→</span>
+    </button>
+  </div>
+  <div className="project-card">
+    <div className="project-tag">Smart Insights (Productivity Tool)</div>
+     
+    <div className="project-icons">📊</div>
+
+    <h3 className="project-title">IT projects</h3>
+    <p className="project-description">Transform your data into clear insights to boost
+       productivity and make smarter decisions
+    </p>
+    <button className="project-btn">
+      learn More <span>→</span>
+    </button>
+  </div>
+</div>
+     </div>
   );
 };
 
