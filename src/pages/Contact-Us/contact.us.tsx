@@ -76,6 +76,7 @@ const ContactUs: React.FC = () => {
       )}
 
       <form onSubmit={savenewlead} style={formStyle}>
+       
         <h2 style={titleStyle}>Contact Us</h2>
 
         <input style={inputStyle} type="text" name="fullName" placeholder="Full Name" />
@@ -115,6 +116,9 @@ const ContactUs: React.FC = () => {
           <button type="submit" style={submitBtn}>
             Submit
           </button>
+           <button type="button" style={submitBtn} onClick={() => window.history.back()}>
+          Back
+        </button>
           <button type="reset" style={cancelBtn}>
             Cancel
           </button>
@@ -143,6 +147,7 @@ const formStyle: React.CSSProperties = {
 
 const titleStyle: React.CSSProperties = {
   textAlign: "center",
+  color: "#333333",
 };
 
 
