@@ -7,10 +7,9 @@ useEffect(() => {
       }, []);
   return (
      <div className="projects-page">
-      <h1 className="projects-title">our projects</h1>
-      <p  className="projects-subtite">
-        A showcase of our work,ideas,and innovetion.
-      </p>
+      <h1 className="projects-title">Our projects</h1>
+      <p  className="projects-subtitle">
+        A showcase of our work,ideas,and innovetion</p>
 
 <div className="projects-grid">
   <div className="project-card">
