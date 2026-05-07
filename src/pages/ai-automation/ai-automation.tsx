@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
-
+import { useNavigate } from "react-router-dom";
 import "./ai-automation.css";
 
 const AiAutomation: React.FC = () => {
+  const navigate = useNavigate();
 
   useEffect(() => {
     document.title = "AI Automation Services";
@@ -162,7 +163,9 @@ const AiAutomation: React.FC = () => {
         </p>
 
         
-            <button className="secondary-btn">
+            <button className="secondary-btn"
+                    onClick={() => navigate("/Contact-Us")}>
+
               Contact Us
             </button>
       </section>
