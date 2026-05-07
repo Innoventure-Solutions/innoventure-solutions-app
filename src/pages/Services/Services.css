@@ -42,6 +42,8 @@
     background: linear-gradient( 120deg, rgba(59, 130, 246, 0.4), transparent 60%);
     opacity: 0;
     transition: opacity 0.4s ease;
+    /* FIX */
+    pointer-events: none;
 }
 
 .service-card:hover::before {
@@ -91,6 +93,9 @@
     align-items: center;
     gap: 6px;
     transition: gap 0.3s ease, color 0.3s ease;
+    /* EXTRA SAFE */
+    position: relative;
+    z-index: 2;
 }
 
 .service-btn span {

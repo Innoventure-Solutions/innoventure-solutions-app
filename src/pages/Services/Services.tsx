@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Services.css";
 
 const Services: React.FC = () => {
+  const navigate = useNavigate();
   useEffect(() => {
       document.title = 'Innovatech Solutions - Services';
     }, []);
@@ -23,9 +25,11 @@ const Services: React.FC = () => {
             <p className="service-description">Reliable IT infrastructure, system integration, and 
               enterprise-grade support solutions for modern businesses.</p>
 
-            <button className="service-btn">
+            <button className="service-btn"
+            onClick={() => navigate("/it-services")}>
               Learn More <span>→</span>
             </button>
+
           </div>
           
           <div className="service-card">
@@ -38,7 +42,8 @@ const Services: React.FC = () => {
             <p className="service-description">Intelligent automation, AI agents, and workflow optimization
                to scale operations with precision.</p>
 
-            <button className="service-btn">
+            <button className="service-btn"
+             onClick={() => navigate("/ai-automation")}>
               Learn More <span>→</span>
             </button>
           </div>
