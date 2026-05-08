@@ -58,7 +58,9 @@ const Services: React.FC = () => {
             <p className="service-description">Advanced threat detection, data protection, and security 
               strategies to safeguard digital assets.</p>
 
-            <button className="service-btn">
+            <button className="service-btn"
+              onClick={() => navigate("/cyber-security")}>
+
               Learn More <span>→</span>
             </button>
           </div>
@@ -73,7 +75,8 @@ const Services: React.FC = () => {
             <p className="service-description">CI/CD pipelines, cloud automation, and infrastructure as code 
               for faster and reliable deployments.</p>
 
-            <button className="service-btn">
+            <button className="service-btn"
+                          onClick={() => navigate("/devops")}>
               Learn More <span>→</span>
             </button>
           </div>
